@@ -25,7 +25,7 @@ Question 1: Who was the highest performing salesman in the month of November?
 
 In your terminal run:
 
-    docker compose exec db psql -U postgres -c "select salespeople.salesperson*name from sales inner join salespeople on sales.salesperson_id = salespeople.salesperson_id inner join products on sales.product_id = products.product_id where extract(month from sale_date) = 11 group by salespeople.salesperson_name order by sum(sales.quantity_sold * products.unit_price) desc limit 1";
+    docker compose exec db psql -U postgres -c "select salespeople.salesperson_name from sales inner join salespeople on sales.salesperson_id = salespeople.salesperson_id inner join products on sales.product_id = products.product_id where extract(month from sale_date) = 11 group by salespeople.salesperson_name order by sum(sales.quantity_sold * products.unit_price) desc limit 1";
 
 Answer 1: Celka Nys
 
