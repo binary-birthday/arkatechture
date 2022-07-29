@@ -10,12 +10,10 @@ Intructions for how to install each can be found at https://docs.docker.com/engi
 
 - First, clone this repo to your machine.
 
-  -In your terminal make sure you change directories to the one containing the cloned repository.
-
-N.B these instructions work on Linux, and Mac OSX (untested)
+- Change directories to the one containing the cloned repository.
 
 - In your terminal run:
-  `bash docker compose up -d`
+  `docker compose up -d`
 
   This will build the containers and initilize the postgres database with the create_tables.sql file and populate the database with the data from the csv files.
 
