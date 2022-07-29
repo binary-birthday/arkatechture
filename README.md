@@ -1,6 +1,4 @@
-# arkatechture
-
-Code challenge for Arkatechture
+# Code challenge for Arkatechture
 
 ## Instructions
 
