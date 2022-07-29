@@ -6,13 +6,13 @@
 
 To run this you'll need docker and docker compose installed on your local machine.
 
-N.B these instructions work on Linux, and Mac OSX (untested)
-
 Intructions for how to install each can be found at https://docs.docker.com/engine/install/ (Docker) & https://docs.docker.com/compose/install/ (Docker Compose)
 
 - First, clone this repo to your machine.
 
   -In your terminal make sure you change directories to the one containing the cloned repository.
+
+N.B these instructions work on Linux, and Mac OSX (untested)
 
 - In your terminal run:
   `bash docker compose up -d`
