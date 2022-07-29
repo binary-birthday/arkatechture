@@ -1,19 +1,21 @@
-CREATE TABLE [IF NOT EXISTS] products (
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE IF NOT EXISTS products (
   product_id uuid,
-	product_name VARCHAR ( 50 ) UNIQUE NOT NULL,
+	product_name VARCHAR ( 50 ) NOT NULL,
 	unit_price NUMERIC(5, 2) NOT NULL,
   PRIMARY KEY(product_id)
 );
 
-CREATE TABLE [IF NOT EXISTS] salespeople (
+CREATE TABLE IF NOT EXISTS salespeople (
   salesperson_id uuid,
-  salesperson_name VARCHAR ( 50 ) UNIQUE NOT NULL,
+  salesperson_name VARCHAR ( 50 ) NOT NULL,
   PRIMARY KEY(salesperson_id)
-)
+);
 
-CREATES TABLE [IF NOT EXISTS] sales (
-  sale_id uuid,
-  customer_name VARCHAR ( 50 ) UNIQUE NOT NULL,
+CREATE TABLE IF NOT EXISTS sales (
+  sale_id uuid DEFAULT uuid_generate_v4 (),
+  customer_name VARCHAR ( 50 ) NOT NULL,
   salesperson_id uuid NOT NULL,
   product_id uuid NOT NULL,
   quantity_sold integer NOT NULL,
@@ -24,5 +26,5 @@ CREATES TABLE [IF NOT EXISTS] sales (
 	    REFERENCES salespeople(salesperson_id), 
   CONSTRAINT fk_product
       FOREIGN KEY(product_id) 
-	    REFERENCES product(product_id)
-)
+	    REFERENCES products(product_id)
+);

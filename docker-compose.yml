@@ -1,16 +1,40 @@
 version: '3.8'
 services:
   db:
-    image: postgres:14.1-alpine
+    image: postgres:latest
     restart: always
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
     ports:
-      - '5432:5432'
+      - "5432:5432"
+    user: postgres
+    environment:
+        - POSTGRES_PASSWORD=postgres
+        - POSTGRES_DB=postgres
     volumes: 
       - db:/var/lib/postgresql/data
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init_db.sql
+      - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+    healthcheck:
+        test: ["CMD-SHELL", "pg_isready -U postgres"]
+        interval: 10s
+        timeout: 5s
+        retries: 5
+    networks:
+      - db_network
+  
+  app:
+    container_name: python_app
+    build: ./app
+    volumes:
+      - python:/var/lib/python
+    networks:
+      - db_network
+    depends_on:
+      db:
+        condition: service_healthy
+    command: python app.py
+
 volumes:
   db:
     driver: local
+  python:
+networks:
+  db_network:
