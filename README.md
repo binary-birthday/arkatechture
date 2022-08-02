@@ -12,7 +12,20 @@ Intructions for how to install each can be found at https://docs.docker.com/engi
 
 - Change directories to the one containing the cloned repository.
 
+- In the root folder create a .env file
+
+  `touch .env`
+
+- Add the required environment variables to the .env file
+
+  - DB="postgres"
+  - DB_HOST="db"
+  - DB_USER="postgres"
+  - DB_PASSWORD="postgres"
+  - DB_PORT="5432"
+
 - In your terminal run:
+
   `docker compose up -d`
 
   This will build the containers and initilize the postgres database with the create_tables.sql file and populate the database with the data from the csv files.

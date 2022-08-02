@@ -1,16 +1,21 @@
 import csv
 import psycopg2
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 conn = None
+
 
 try:
     print('Connecting to the PostgreSQL database...')
     conn = psycopg2.connect(
-        host="db",
-        database="postgres",
-        user="postgres",
-        password="postgres",
-        port="5432")
+        host=os.getenv('DB_HOST'),
+        database=os.getenv('DB'),
+        user=os.getenv('DB_USER'),
+        password=os.getenv('DB_PASSWORD'),
+        port=os.getenv('DB_PORT')
+    )
 
     cur = conn.cursor()
 
