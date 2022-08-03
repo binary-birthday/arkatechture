@@ -1,4 +1,4 @@
-customer_name,salesman_id,product_id,quantity_sold,sale_date
+customer_name,salesperson_id,product_id,quantity_sold,sale_date
 Cristen Vanyashkin,fd77335b-3b82-4ee1-8e85-d4ebe20e1ae4,fb625971-9a5e-47d2-b968-c2abfe2809cf,6,2020-12-29
 Eloisa Bodocs,7345ab0b-4018-4678-9ced-d5a27c2aec7a,b933ceeb-1474-4d9e-b909-85b963180a3d,11,2020-12-07
 Lorrin Vannuccinii,e27eed05-a502-47b7-ba66-253da30a0114,8106a97d-a531-4194-b172-1cb873fab693,6,2020-12-10
