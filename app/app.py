@@ -32,7 +32,7 @@ try:
                     sql.SQL("INSERT INTO {} ({}) VALUES ({})").format(
                         sql.Identifier(table_name),
                         sql.SQL(', ').join(map(sql.Identifier, headers)),
-                        sql.SQL(', ').join(sql.Placeholder() * len(headers)),
+                        sql.SQL(', ').join(sql.Placeholder() * len(row)),
                     ), row
                 )
         conn.commit()
