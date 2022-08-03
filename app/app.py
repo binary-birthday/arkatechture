@@ -27,10 +27,10 @@ try:
         # Handles missing file, will raise ValueError if file missing
         files.index(filename)
 
-        table_name = "products" if "Product" in filename else "salespeople" if "people" in filename else "sales"
         with open(filename) as csv_file:
             reader = csv.reader(csv_file)
             headers = next(reader)
+            table_name = "products" if "Product" in filename else "salespeople" if "people" in filename else "sales"
             for row in reader:
                 cur.execute(
                     sql.SQL("INSERT INTO {} ({}) VALUES ({})").format(
