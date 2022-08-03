@@ -23,8 +23,10 @@ try:
         filenames = os.listdir(directory)
         return [filename for filename in filenames if filename.endswith(file_ext)]
 
-    def read_file_and_insert_into_db(file, table_name):
-        with open(file) as csv_file:
+    def read_file_and_insert_into_db(filename, files):
+        files.index(filename)
+        table_name = "products" if "Product" in filename else "salespeople" if "people" in filename else "sales"
+        with open(filename) as csv_file:
             reader = csv.reader(csv_file)
             headers = next(reader)
             for row in reader:
@@ -37,21 +39,15 @@ try:
                 )
         conn.commit()
 
-    def try_read_file(filename, files):
-        files.index(filename)
-        table_name = "products" if "Product" in filename else "salespeople" if "people" in filename else "sales"
-        read_file_and_insert_into_db(filename, table_name)
-
-    files = get_files_with_ext(os.getcwd())
-
     try:
+        files = get_files_with_ext(os.getcwd())
         num_files = len(files)
         if num_files != 3:
             raise Exception("Expected three files, found %s files", num_files)
         else:
-            try_read_file("ProductData.csv", files)
-            try_read_file("SalespeopleData.csv", files)
-            try_read_file("SalesData.csv", files)
+            read_file_and_insert_into_db("ProductData.csv", files)
+            read_file_and_insert_into_db("SalespeopleData.csv", files)
+            read_file_and_insert_into_db("SalesData.csv", files)
     except Exception as e:
         print(e)
 
