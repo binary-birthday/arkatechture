@@ -24,6 +24,7 @@ try:
         return [filename for filename in filenames if filename.endswith(file_ext)]
 
     def read_file_and_insert_into_db(filename, files):
+        # Handles missing file, will raise ValueError if file missing
         files.index(filename)
         table_name = "products" if "Product" in filename else "salespeople" if "people" in filename else "sales"
         with open(filename) as csv_file:
